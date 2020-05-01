@@ -14,6 +14,13 @@ import fii.practic.health.entity.model.Appointment;
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 	
 	 @Query("SELECT a FROM Appointment a WHERE doctor_id = :doctor_id")
-	 public List<Appointment> findAppointmentsById(@Param("doctor_id") Long doctor_id);
-
+	 public List<Appointment> findAppointmentsByDoctorId(@Param("doctor_id") Long doctor_id);
+	 
+	 @Query("SELECT a FROM Appointment a WHERE patient_id = :patient_id")
+	 public List<Appointment> findAppointmentsByPatientId(@Param("patient_id") Long patient_id);
+	 
+	 @Query("SELECT a FROM Appointment a WHERE start_date >= current_timestamp")
+	 public List<Appointment> findFutureAppointments();
+			
+	 
 }

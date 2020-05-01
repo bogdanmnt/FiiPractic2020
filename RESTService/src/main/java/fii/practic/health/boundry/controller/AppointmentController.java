@@ -1,9 +1,9 @@
 package fii.practic.health.boundry.controller;
 
 
-
-
+import java.util.ArrayList;
 import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fii.practic.health.boundry.dto.AppointmentDTO;
-import fii.practic.health.boundry.dto.PatientDTO;
 import fii.practic.health.boundry.exceptions.BadRequestException;
 import fii.practic.health.boundry.exceptions.NotFoundException;
 import fii.practic.health.control.service.AppointmentService;
@@ -56,17 +56,49 @@ public class AppointmentController {
     }
     
     
-    @PostMapping 
-    public ResponseEntity<AppointmentDTO> save(@RequestBody AppointmentDTO appointment) throws NotFoundException, BadRequestException{
+    @GetMapping(value = "/future/appointments")
+    public ResponseEntity<List<AppointmentDTO>> getFutureAppointments() {
+        List<Appointment> appointments = appointmentService.findFutureAppointments();
+
+        return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
+    }
     
-        Doctor doc = doctorService.getById(appointment.getDoctorId());
+    @GetMapping(value = "/doctor/{id}")
+    public ResponseEntity<List<AppointmentDTO>> getDocAppsById(@PathVariable("id") Long id) throws NotFoundException {
+        Doctor doctor = doctorService.getById(id);
+        if(doctor == null){
+            throw new NotFoundException(String.format("Doctor with id %d was not found", id));
+        }
+        List<Appointment> appointments = appointmentService.findAppByDoctorId(id);
+
+        return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
+    }
+    
+
+    
+    @GetMapping(value = "/patient/{id}")
+    public ResponseEntity<List<AppointmentDTO>> getPatientAppsById(@PathVariable("id") Long id) throws NotFoundException {
+        Patient patient = patientService.getById(id);
+        if(patient == null){
+            throw new NotFoundException(String.format("Patient with id %d was not found", id));
+        }
+        List<Appointment> appointments = appointmentService.findAppByPatientId(id);
+
+        return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
+    }
+    
+    
+    @PostMapping 
+    public ResponseEntity<AppointmentDTO> save(@RequestBody AppointmentDTO appointmentDTO) throws NotFoundException, BadRequestException{
+    
+        Doctor doc = doctorService.getById(appointmentDTO.getDoctorId());
         if(doc == null){
-            throw new NotFoundException(String.format("Doctor with id %d was not found", appointment.getDoctorId()));
+            throw new NotFoundException(String.format("Doctor with id %d was not found", appointmentDTO.getDoctorId()));
         }
         
-        Patient patient = patientService.getById(appointment.getPatientId());
+        Patient patient = patientService.getById(appointmentDTO.getPatientId());
         if(patient == null){
-            throw new NotFoundException(String.format("Patient with id %d was not found", appointment.getPatientId()));
+            throw new NotFoundException(String.format("Patient with id %d was not found", appointmentDTO.getPatientId()));
         }
         
       if(!doc.getPatients().contains(patient))
@@ -74,20 +106,21 @@ public class AppointmentController {
        doc.getFirstName());
       
       
-      if (appointment.getStartDate().compareTo(appointment.getEndTime()) >= 0) {
+      if (appointmentDTO.getStartDate().compareTo(appointmentDTO.getEndTime()) >= 0) {
 			throw new BadRequestException("The end date cannot be earlier than the start date!");
 		}
       
       List<Appointment> appointmnets = null;
-      appointmnets=appointmentService.getListaAppByDocId(doc.getId());
+      appointmnets=appointmentService.findAppByDoctorId(doc.getId());
      for(Appointment p : appointmnets) {
-    	 if(appointment.getStartDate().after(p.getStartDate()) && appointment.getStartDate().before(p.getEndTime()))
+    	 if(appointmentDTO.getStartDate().after(p.getStartDate()) && appointmentDTO.getStartDate().before(p.getEndTime()))
     		 throw new BadRequestException("An appointment already exists between this time");
-    		 if(appointment.getEndTime().after(p.getStartDate()) && appointment.getEndTime().before(p.getEndTime())) 
+    		 if(appointmentDTO.getEndTime().after(p.getStartDate()) && appointmentDTO.getEndTime().before(p.getEndTime())) 
     		 throw new BadRequestException("An appointment already exists between this time");
      }
      //Appointment newAppointment = appointmentService.save(modelMapper.map(appointmentDTO, Appointment.class));
-     Appointment app=new Appointment(appointment.getCause(), appointment.getStartDate(), appointment.getEndTime(), doc, patient);
+     //Error dispatching
+     Appointment app=new Appointment(appointmentDTO.getCause(), appointmentDTO.getStartDate(), appointmentDTO.getEndTime(), doc, patient);
      appointmentService.save(app);
      		return new ResponseEntity<>(modelMapper.map(app, AppointmentDTO.class), HttpStatus.CREATED);
     		}

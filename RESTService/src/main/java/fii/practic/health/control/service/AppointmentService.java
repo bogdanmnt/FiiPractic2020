@@ -14,6 +14,10 @@ public interface AppointmentService {
 
 	  Appointment save(Appointment appointment);
 	  
-	  List<Appointment> getListaAppByDocId(Long doctor_id);
+	  List<Appointment> findAppByDoctorId(Long doctor_id);
+	  
+	  List<Appointment> findAppByPatientId(Long patient_id);
+
+	  List<Appointment> findFutureAppointments();
 
 }
