@@ -1,0 +1,20 @@
+svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+}
+
+.table-component-holder {
+  margin-bottom: 90px;
+}
+
+.table-container {
+    padding: 5px 15px 15px 15px;
+}
+
+.table-component-holder {
+    border-bottom: 1px solid #327ebd;
+    background-color: white;
+}

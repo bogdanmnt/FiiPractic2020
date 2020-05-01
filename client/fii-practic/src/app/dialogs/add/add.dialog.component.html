@@ -1,0 +1,43 @@
+<div class="container">
+    <h3 mat-dialog-title>Add new doctor</h3>
+
+    <form class="mat-dialog-content" [formGroup]="form">
+        <mat-form-field>
+            <input matInput placeholder="First name" formControlName="firstName">
+            <mat-error *ngIf="form.controls['firstName'].errors?.required && form.controls['firstName'].touched">
+                First name is mandatory
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput placeholder="Last name" formControlName="lastName">
+            <mat-error *ngIf="form.controls['lastName'].errors?.required && form.controls['lastName'].touched">
+                Last name is mandatory
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Speciality" formControlName="speciality">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="form.controls['email'].errors">
+                Not a valid e-mail
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput placeholder="Phone number" formControlName="phone">
+            <mat-error *ngIf="form.controls['email'].errors">
+                Not a valid phone number
+            </mat-error>
+        </mat-form-field>
+
+        <div mat-dialog-actions>
+            <button mat-button [type]="button" [disabled]="!form.valid" (click)="createDoctor()">Save</button>
+            <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        </div>
+    </form>
+
+</div>
