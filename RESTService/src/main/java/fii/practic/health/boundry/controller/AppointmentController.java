@@ -120,10 +120,13 @@ public class AppointmentController {
       List<Appointment> appointmnets = null;
       appointmnets=appointmentService.findAppByDoctorId(doc.getId());
      for(Appointment p : appointmnets) {
-    	 if(appointmentDTO.getStartDate().after(p.getStartDate()) && appointmentDTO.getStartDate().before(p.getEndTime()))
+    	 if(appointmentDTO.getStartDate().isAfter(p.getStartDate()) && appointmentDTO.getStartDate().isBefore(p.getEndTime()))
     		 throw new BadRequestException("An appointment already exists between this time");
-    		 if(appointmentDTO.getEndTime().after(p.getStartDate()) && appointmentDTO.getEndTime().before(p.getEndTime())) 
+    	 if(appointmentDTO.getEndTime().isAfter(p.getStartDate()) && appointmentDTO.getEndTime().isBefore(p.getEndTime())) 
     		 throw new BadRequestException("An appointment already exists between this time");
+    	 if(appointmentDTO.getStartDate().isEqual(p.getStartDate()))
+    		 throw new BadRequestException("An appointment already exists between this time");
+    		 
      }
      //Appointment newAppointment = appointmentService.save(modelMapper.map(appointmentDTO, Appointment.class));
      //Error dispatching

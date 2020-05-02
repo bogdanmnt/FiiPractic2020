@@ -1,5 +1,6 @@
 package fii.practic.health.boundry.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -17,9 +18,9 @@ public class AppointmentDTO {
 	
 	private String cause;
 	
-	private Date startDate;
+	private LocalDateTime startDate;
 	
-	private Date endTime;
+	private LocalDateTime endTime;
 	
 	private Long doctorId;
 	
@@ -48,19 +49,19 @@ public class AppointmentDTO {
 		this.cause = cause;
 	}
 
-	public Date getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndTime() {
+	public LocalDateTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
 

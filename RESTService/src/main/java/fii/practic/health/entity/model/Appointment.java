@@ -1,6 +1,8 @@
 package fii.practic.health.entity.model;
 
-import java.util.Date;
+
+
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,10 +26,10 @@ public class Appointment {
 	private String cause;
 	
 	@Column(columnDefinition= "TIMESTAMP WITH TIME ZONE")
-	private Date startDate;
+	private LocalDateTime startDate;
 	
 	@Column(columnDefinition= "TIMESTAMP WITH TIME ZONE")
-	private Date endTime;
+	private LocalDateTime endTime;
 
 	
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
@@ -42,7 +44,7 @@ public class Appointment {
 	
 	
 
-	public Appointment(String cause, Date startDate, Date endTime, Doctor doctor, Patient patient) {
+	public Appointment(String cause, LocalDateTime startDate, LocalDateTime endTime, Doctor doctor, Patient patient) {
 		super();
 		this.cause = cause;
 		this.startDate = startDate;
@@ -75,22 +77,22 @@ public class Appointment {
 	}
 
 
-	public Date getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
 
 
-	public Date getEndTime() {
+	public LocalDateTime getEndTime() {
 		return endTime;
 	}
 
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
 
