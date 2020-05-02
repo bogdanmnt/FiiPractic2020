@@ -10,8 +10,6 @@ public interface AppointmentService {
 	
 	  List<Appointment> getAll();
 
-	  Appointment getById(Long id);
-
 	  Appointment save(Appointment appointment);
 	  
 	  List<Appointment> findAppByDoctorId(Long doctor_id);
@@ -19,5 +17,7 @@ public interface AppointmentService {
 	  List<Appointment> findAppByPatientId(Long patient_id);
 
 	  List<Appointment> findFutureAppointments();
+	  
+	  List<Appointment> findFutureAppointmentsByDoctorId(Long doctor_id);
 
 }

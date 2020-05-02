@@ -36,11 +36,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 		return appointmentRepository.findAll();
 	}
 
-	@Override
-	public Appointment getById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public Appointment save(Appointment appointment) {
@@ -63,6 +59,12 @@ public class AppointmentServiceImpl implements AppointmentService{
 	@Override
 	public List<Appointment> findFutureAppointments() {
 		return appointmentRepository.findFutureAppointments();
+	}
+
+	@Override
+	public List<Appointment> findFutureAppointmentsByDoctorId(Long doctor_id) {
+		
+		return appointmentRepository.findFutureAppointmentsByDoctorId(doctor_id);
 	}
 
 	

@@ -63,8 +63,15 @@ public class AppointmentController {
         return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
     }
     
+    @GetMapping(value = "/future/appointments/doctor/{doctor_id}")
+    public ResponseEntity<List<AppointmentDTO>> getFutureAppointments(@PathVariable("doctor_id") Long doctor_id) {
+        List<Appointment> appointments = appointmentService.findFutureAppointmentsByDoctorId(doctor_id);
+
+        return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
+    }
+    
     @GetMapping(value = "/doctor/{id}")
-    public ResponseEntity<List<AppointmentDTO>> getDocAppsById(@PathVariable("id") Long id) throws NotFoundException {
+    public ResponseEntity<List<AppointmentDTO>> getAllAppointmentsByDoctorId(@PathVariable("id") Long id) throws NotFoundException {
         Doctor doctor = doctorService.getById(id);
         if(doctor == null){
             throw new NotFoundException(String.format("Doctor with id %d was not found", id));
@@ -77,7 +84,7 @@ public class AppointmentController {
 
     
     @GetMapping(value = "/patient/{id}")
-    public ResponseEntity<List<AppointmentDTO>> getPatientAppsById(@PathVariable("id") Long id) throws NotFoundException {
+    public ResponseEntity<List<AppointmentDTO>> getAllPatientAppointmentsById(@PathVariable("id") Long id) throws NotFoundException {
         Patient patient = patientService.getById(id);
         if(patient == null){
             throw new NotFoundException(String.format("Patient with id %d was not found", id));

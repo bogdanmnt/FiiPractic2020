@@ -21,6 +21,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	 
 	 @Query("SELECT a FROM Appointment a WHERE start_date >= current_timestamp")
 	 public List<Appointment> findFutureAppointments();
+	 
+	 @Query("SELECT a FROM Appointment a WHERE start_date >= current_timestamp AND doctor_id = :doctor_id")
+	 public List<Appointment> findFutureAppointmentsByDoctorId(@Param("doctor_id") Long doctor_id);
 			
 	 
 }
