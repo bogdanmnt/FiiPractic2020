@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +48,10 @@ public class AppointmentController {
            this.appointmentService=appointmentService;
     }
     
-    
+    /**
+     * 
+     * @return A list of all Appointments
+     */
     @GetMapping
     public ResponseEntity<List<AppointmentDTO>> getAppointments() {
         List<Appointment> appointments = appointmentService.getAll();
@@ -55,7 +59,10 @@ public class AppointmentController {
         return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
     }
     
-    
+    /**
+     * 
+     * @return A list of future appointments
+     */
     @GetMapping(value = "/future/appointments")
     public ResponseEntity<List<AppointmentDTO>> getFutureAppointments() {
         List<Appointment> appointments = appointmentService.findFutureAppointments();
@@ -63,6 +70,23 @@ public class AppointmentController {
         return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
     }
     
+    /**
+     * This method returns all the appointments that can be canceled
+     * @return List<AppointmendDTO> 
+     */
+    @GetMapping(value = "/future/cancelabe/appointments")
+    public ResponseEntity<List<AppointmentDTO>> getFutureAppointmentsThatCanBeCanceled() {
+        List<Appointment> appointments = appointmentService.findFutureAppointmentsThatCanBeCanceled();
+
+        return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
+    }
+    
+    
+    /**
+     * This method returns all future appointments of a specific doctor
+     * @param doctor_id
+     * @return List<AppointmentDTO>
+     */
     @GetMapping(value = "/future/appointments/doctor/{doctor_id}")
     public ResponseEntity<List<AppointmentDTO>> getFutureAppointments(@PathVariable("doctor_id") Long doctor_id) {
         List<Appointment> appointments = appointmentService.findFutureAppointmentsByDoctorId(doctor_id);
@@ -70,6 +94,13 @@ public class AppointmentController {
         return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
     }
     
+    
+    /**
+     * This method returns all the appointments of a specific doctor, from all the time
+     * @param id
+     * @return
+     * @throws NotFoundException
+     */
     @GetMapping(value = "/doctor/{id}")
     public ResponseEntity<List<AppointmentDTO>> getAllAppointmentsByDoctorId(@PathVariable("id") Long id) throws NotFoundException {
         Doctor doctor = doctorService.getById(id);
@@ -82,6 +113,12 @@ public class AppointmentController {
     }
     
 
+    /**
+     * This method returns all the appointments of a specific patient 
+     * @param id
+     * @return
+     * @throws NotFoundException
+     */
     
     @GetMapping(value = "/patient/{id}")
     public ResponseEntity<List<AppointmentDTO>> getAllPatientAppointmentsById(@PathVariable("id") Long id) throws NotFoundException {
@@ -94,7 +131,17 @@ public class AppointmentController {
         return new ResponseEntity<>((List<AppointmentDTO>) modelMapper.map(appointments, new TypeToken<List<AppointmentDTO>>(){}.getType()), HttpStatus.OK);
     }
     
-    
+    /**
+     * This method saves an appointment into the DB
+     * The doctor and  patient entities should exist
+     * An patient should belong to a specific doctor
+     * The end date cannot be earlier than the start date
+     * A doctor cannot have more than one appointment between an interval of time
+     * @param appointmentDTO
+     * @return
+     * @throws NotFoundException
+     * @throws BadRequestException
+     */
     @PostMapping 
     public ResponseEntity<AppointmentDTO> save(@RequestBody AppointmentDTO appointmentDTO) throws NotFoundException, BadRequestException{
     
@@ -134,6 +181,23 @@ public class AppointmentController {
      appointmentService.save(app);
      		return new ResponseEntity<>(modelMapper.map(app, AppointmentDTO.class), HttpStatus.CREATED);
     		}
+    
+    
+    /**
+     * This method deletes an appointment by id
+     * @param id
+     * @return {@link Void}
+     * @throws BadRequestException
+     */
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteAppointmentById(@PathVariable Long id) throws BadRequestException{
+       Appointment app = appointmentService.getById(id);
+        if(app == null)
+        	throw new BadRequestException("The appointment with id " + id + " does not exist!");
+        
+        appointmentService.deleteAppointment(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
     

@@ -2,6 +2,8 @@ package fii.practic.health.control.service;
 
 import java.util.List;
 
+import fii.practic.health.boundry.exceptions.BadRequestException;
+import fii.practic.health.boundry.exceptions.NotFoundException;
 import fii.practic.health.entity.model.Appointment;
 
 
@@ -19,5 +21,11 @@ public interface AppointmentService {
 	  List<Appointment> findFutureAppointments();
 	  
 	  List<Appointment> findFutureAppointmentsByDoctorId(Long doctor_id);
+	  
+	  void deleteAppointment(Long id) throws BadRequestException;
+
+	  Appointment getById(Long id);
+
+	List<Appointment> findFutureAppointmentsThatCanBeCanceled();
 
 }

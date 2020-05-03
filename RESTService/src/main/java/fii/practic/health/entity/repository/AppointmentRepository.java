@@ -25,5 +25,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	 @Query("SELECT a FROM Appointment a WHERE start_date >= current_timestamp AND doctor_id = :doctor_id")
 	 public List<Appointment> findFutureAppointmentsByDoctorId(@Param("doctor_id") Long doctor_id);
 			
+	 @Query(value ="SELECT * FROM Appointment a WHERE start_date >=  now() + interval '1 hours' AND id = :id", nativeQuery = true)
+	 public Appointment findWhatAppointmentsCanBeCanceledByAppId(@Param("id") Long id);
+	
+	 @Query(value ="SELECT * FROM Appointment a WHERE start_date >=  now() + interval '1 hours'", nativeQuery = true)
+	 public List<Appointment> findAllAppointmentsCanBeCanceled();
 	 
 }
