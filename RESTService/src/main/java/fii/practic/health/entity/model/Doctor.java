@@ -9,15 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
-public class Doctor {
+public class Doctor extends Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String firstName;
-
-    private String lastName;
 
     private String speciality;
 

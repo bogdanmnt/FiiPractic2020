@@ -7,16 +7,7 @@ import javax.validation.constraints.PositiveOrZero;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-public class Patient {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    private String lastName;
+public class Patient extends Person {
     
     @PositiveOrZero(message ="Pozitiv sau zero")
     @Min(value = 18, message="Varsta prea mica!")
