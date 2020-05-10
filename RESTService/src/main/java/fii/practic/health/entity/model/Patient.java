@@ -8,89 +8,89 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Patient extends Person {
-    
-    @PositiveOrZero(message ="Pozitiv sau zero")
-    @Min(value = 18, message="Varsta prea mica!")
-    private Integer age;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "email_id")
-    private Email email;
+	@PositiveOrZero(message = "Pozitiv sau zero")
+	@Min(value = 18, message = "Varsta prea mica!")
+	private Integer age;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "email_id")
+	private Email email;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "phone_number_id")
-    private PhoneNumber phoneNumber;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private Address address;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(nullable = true)
-    private Doctor doctor;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "phone_number_id")
+	private PhoneNumber phoneNumber;
 
-    public String getFirstName() {
-        return firstName;
-    }
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(nullable = true)
+	private Doctor doctor;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
+	public Doctor getDoctor() {
+		return doctor;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Integer getAge() {
-        return age;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+	public Integer getAge() {
+		return age;
+	}
 
-    public Email getEmail() {
-        return email;
-    }
+	public void setAge(Integer age) {
+		this.age = age;
+	}
 
-    public void setEmail(Email email) {
-        this.email = email;
-    }
+	public Email getEmail() {
+		return email;
+	}
 
-    public Address getAddress() {
-        return address;
-    }
+	public void setEmail(Email email) {
+		this.email = email;
+	}
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+	public Address getAddress() {
+		return address;
+	}
 
-    public PhoneNumber getPhoneNumber() {
-        return phoneNumber;
-    }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-    public void setPhoneNumber(PhoneNumber phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+	public PhoneNumber getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(PhoneNumber phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 }

@@ -9,27 +9,26 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class PhoneNumber {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Pattern(regexp = "^(?=0[723][2-8]\\d{7})(?!.*(.)\\1{2,}).{10}$", message="Invalid phone number!")
-    private String phoneNumber;
+	@Pattern(regexp = "^(?=0[723][2-8]\\d{7})(?!.*(.)\\1{2,}).{10}$", message = "Invalid phone number!")
+	private String phoneNumber;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 }

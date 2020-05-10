@@ -9,87 +9,87 @@ import java.util.List;
 
 public class DoctorDTO {
 
-    private Long id;
+	private Long id;
 
-    @NotNull(message = "first name must not be null")
-    private String firstName;
+	@NotNull(message = "first name must not be null")
+	private String firstName;
 
-    @Size(min = 4, max = 50, message = "Last name is invalid")
-    private String lastName;
+	@Size(min = 4, max = 50, message = "Last name is invalid")
+	private String lastName;
 
-    private String speciality;
+	private String speciality;
 
-    @Valid
-    private EmailDTO email;
+	@Valid
+	private EmailDTO email;
 
-    private AddressDTO address;
+	private AddressDTO address;
 
-    @Phone
-    private PhoneNumberDTO phoneNumber;
+	@Phone
+	private PhoneNumberDTO phoneNumber;
 
-    private List<PatientDTO> patients;
+	private List<PatientDTO> patients;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public String getSpeciality() {
-        return speciality;
-    }
+	public String getSpeciality() {
+		return speciality;
+	}
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
+	public void setSpeciality(String speciality) {
+		this.speciality = speciality;
+	}
 
-    public EmailDTO getEmail() {
-        return email;
-    }
+	public EmailDTO getEmail() {
+		return email;
+	}
 
-    public void setEmail(EmailDTO email) {
-        this.email = email;
-    }
+	public void setEmail(EmailDTO email) {
+		this.email = email;
+	}
 
-    public AddressDTO getAddress() {
-        return address;
-    }
+	public AddressDTO getAddress() {
+		return address;
+	}
 
-    public void setAddress(AddressDTO address) {
-        this.address = address;
-    }
+	public void setAddress(AddressDTO address) {
+		this.address = address;
+	}
 
-    public PhoneNumberDTO getPhoneNumber() {
-        return phoneNumber;
-    }
+	public PhoneNumberDTO getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public void setPhoneNumber(PhoneNumberDTO phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+	public void setPhoneNumber(PhoneNumberDTO phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-    public List<PatientDTO> getPatients() {
-        return patients;
-    }
+	public List<PatientDTO> getPatients() {
+		return patients;
+	}
 
-    public void setPatients(List<PatientDTO> patients) {
-        this.patients = patients;
-    }
+	public void setPatients(List<PatientDTO> patients) {
+		this.patients = patients;
+	}
 }

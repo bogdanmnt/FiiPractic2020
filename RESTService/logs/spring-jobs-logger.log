@@ -1,0 +1,21 @@
+2020-05-10 22:21:30,392 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The time is now 22:21:30
+2020-05-10 22:21:30,392 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] I am scanning the Database...
+2020-05-10 22:21:30,548 WARN fii.practic.health.scheduler.ScheduledTasks [scheduling-1] NO ENTRY FROM DB FROM scheduler_last_recorded_id_valued
+2020-05-10 22:21:30,548 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] Adding ALL data to the log file...
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=1 has ended at: 2020-05-10T15:29
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=2 has ended at: 2020-05-10T15:30
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=3 has ended at: 2020-05-10T15:31
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=4 has ended at: 2020-05-10T15:32
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=5 has ended at: 2020-05-10T15:33
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=6 has ended at: 2020-05-10T15:34
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=7 has ended at: 2020-05-10T15:35
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=8 has ended at: 2020-05-10T15:36
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=9 has ended at: 2020-05-10T15:37
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=10 has ended at: 2020-05-10T15:39
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=11 has ended at: 2020-05-10T15:40
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=12 has ended at: 2020-05-10T15:41
+2020-05-10 22:21:30,626 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The appointment with id=13 has ended at: 2020-05-10T15:42
+2020-05-10 22:21:30,657 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] ...............................................................
+2020-05-10 22:22:32,166 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] The time is now 22:22:32
+2020-05-10 22:22:32,168 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] I am scanning the Database...
+2020-05-10 22:22:32,453 INFO fii.practic.health.scheduler.ScheduledTasks [scheduling-1] NO NEW APPOINTMENT...

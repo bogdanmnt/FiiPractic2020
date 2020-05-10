@@ -2,28 +2,28 @@ package fii.practic.health.boundry.dto;
 
 public class ErrorDTO {
 
-    private int statusCode;
+	private int statusCode;
 
-    private String message;
+	private String message;
 
-    public ErrorDTO(int statusCode, String message) {
-        this.statusCode = statusCode;
-        this.message = message;
-    }
+	public ErrorDTO(int statusCode, String message) {
+		this.statusCode = statusCode;
+		this.message = message;
+	}
 
-    public int getStatusCode() {
-        return statusCode;
-    }
+	public int getStatusCode() {
+		return statusCode;
+	}
 
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
-    }
+	public void setStatusCode(int statusCode) {
+		this.statusCode = statusCode;
+	}
 
-    public String getMessage() {
-        return message;
-    }
+	public String getMessage() {
+		return message;
+	}
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+	public void setMessage(String message) {
+		this.message = message;
+	}
 }

@@ -1,31 +1,21 @@
 package fii.practic.health.boundry.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-import fii.practic.health.entity.model.Doctor;
-import fii.practic.health.entity.model.Patient;
 
 public class AppointmentDTO {
 
-	
 	private Long id;
-	
+
 	private String cause;
-	
+
 	private LocalDateTime startDate;
-	
+
 	private LocalDateTime endTime;
-	
+
 	private Long doctorId;
-	
+
 	private Long patientId;
-	
+
 //	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "lastName")
 //	@JsonIdentityReference(alwaysAsId = true)
 //	private Doctor doctor;
@@ -81,6 +71,4 @@ public class AppointmentDTO {
 		this.patientId = patientId;
 	}
 
-	
-	
 }

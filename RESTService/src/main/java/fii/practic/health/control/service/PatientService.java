@@ -6,16 +6,16 @@ import java.util.List;
 
 public interface PatientService {
 
-    List<Patient> getAll();
+	List<Patient> getAll();
 
-    Patient getById(Long id);
+	Patient getById(Long id);
 
-    Patient save(Patient doctor);
+	Patient save(Patient doctor);
 
-    Patient update(Patient patient);
+	Patient update(Patient patient);
 
-    Patient patch(Patient patient);
+	Patient patch(Patient patient);
 
-    void delete(Patient patient);
+	void delete(Patient patient);
 
 }
